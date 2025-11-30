@@ -23,6 +23,7 @@ export async function createTask(formData: FormData) {
 	}
 
 	revalidatePath('/')
+	revalidatePath('/expired')
 	redirect('/')
 }
 
@@ -42,6 +43,7 @@ export async function deleteTask(formData: FormData) {
 	}
 
 	revalidatePath('/')
+	revalidatePath('/expired')
 	redirect('/')
 }
 
@@ -68,5 +70,6 @@ export async function completedTask(formData: FormData) {
 	}
 
 	revalidatePath('/')
+	revalidatePath('/expired')
 	redirect('/')
 }

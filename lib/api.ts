@@ -69,7 +69,7 @@ export async function getOverdueTasks() {
 			updatedAt: true,
 		},
 		orderBy: {
-			dueDate: 'asc', // 期限が古い順に並べると見やすい
+			dueDate: 'asc', 
 		},
 	})
 }
