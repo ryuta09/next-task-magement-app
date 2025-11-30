@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { MdAddTask } from 'react-icons/md'
 import TaskCard from '@/components/TaskCard/TaskCard'
+import { getAllTasks } from '@/lib/api'
 
-export default function MainPage() {
+export default async function MainPage() {
+	const tasks = await getAllTasks()
+	console.log(tasks)
 	return (
 		<div className='h-full overflow-y-auto p-8 pb-24 text-gray-800'>
 			<header className='flex items-center justify-between'>
@@ -16,7 +19,9 @@ export default function MainPage() {
 				</Link>
 			</header>
 			<div className='mt-8 flex flex-wrap gap-4'>
-				<TaskCard />
+				{tasks.map((task) => (
+					<TaskCard key={task.id} task={task} />
+				))}
 			</div>
 		</div>
 	)

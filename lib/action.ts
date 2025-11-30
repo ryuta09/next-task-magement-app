@@ -27,8 +27,11 @@ export async function createTask(formData: FormData) {
 export async function deleteTask(formData: FormData) {
 	const id = Number(formData.get('id'))
 
-	await prisma.task.delete({
+	await prisma.task.update({
 		where: { id },
+		data: {
+			status: true,
+		},
 	})
 
 	revalidatePath('/')
