@@ -36,3 +36,28 @@ export async function deleteTask(formData: FormData) {
 
 	revalidatePath('/')
 }
+
+export async function completedTask(formData: FormData) {
+	const id = Number(formData.get('id'))
+	const title = formData.get('title') as string
+	const description = formData.get('description') as string
+	const dueDate = formData.get('dueDate') as string
+	const isCompleted = formData.get('isCompleted') === 'on'
+
+	try {
+		await prisma.task.update({
+			where: { id },
+			data: {
+				title,
+				description,
+				dueDate: new Date(dueDate),
+				status: isCompleted,
+			},
+		})
+
+		redirect('/')
+	} catch (error) {
+		console.error('Error updating task:', error)
+		throw error
+	}
+}

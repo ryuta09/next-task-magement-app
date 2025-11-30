@@ -33,3 +33,18 @@ export async function getCompletedTasks() {
 		},
 	})
 }
+
+export async function getTaskById(id: number) {
+  return await prisma.task.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      dueDate: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+}
