@@ -9,13 +9,13 @@ export default async function MainPage() {
 	return (
 		<div className='h-full overflow-y-auto p-8 pb-24 text-gray-800'>
 			<header className='flex items-center justify-between'>
-				<h1 className='flex items-center font-bold text-2xl'>All Tasks</h1>
+				<h1 className='flex items-center font-bold text-2xl'>進行中のタスク</h1>
 				<Link
 					href='/new'
 					className='flex items-center gap-1 rounded-full border bg-gray-800 px-4 py-2 font-semibold text-white shadow-sm hover:bg-gray-700'
 				>
 					<MdAddTask className='size-5' />
-					<div>Add Task</div>
+					<div>タスクを追加</div>
 				</Link>
 			</header>
 			<div className='mt-8 flex flex-wrap gap-4'>

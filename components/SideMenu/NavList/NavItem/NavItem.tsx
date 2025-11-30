@@ -12,7 +12,7 @@ export default function NavItem({ label, link, icon }: NavItemProps) {
 	return (
 		<Link
 			href={link}
-			className={`flex w-full items-center gap-2 p-4 font-medium hover:bg-gray-700 ${pathname === link ? 'border-r-4 border-r-green-500 bg-gray-600' : ''}`}
+			className={`flex w-full items-center gap-2 p-4 font-semibold hover:bg-gray-700 ${pathname === link ? 'border-r-4 border-r-green-500 bg-gray-600' : ''}`}
 		>
 			<div>{icon}</div>
 			<div>{label}</div>
