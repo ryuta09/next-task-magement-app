@@ -1,5 +1,6 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { prisma } from './prisma'
 
@@ -21,4 +22,14 @@ export async function createTask(formData: FormData) {
 		console.error('Error creating task:', error)
 		throw error
 	}
+}
+
+export async function deleteTask(formData: FormData) {
+	const id = Number(formData.get('id'))
+
+	await prisma.task.delete({
+		where: { id },
+	})
+
+	revalidatePath('/')
 }
