@@ -1,6 +1,5 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { prisma } from './prisma'
 
@@ -17,11 +16,11 @@ export async function createTask(formData: FormData) {
 				dueDate: new Date(dueDate),
 			},
 		})
-		redirect('/')
 	} catch (error) {
 		console.error('Error creating task:', error)
 		throw error
 	}
+	redirect('/')
 }
 
 export async function deleteTask(formData: FormData) {
@@ -33,8 +32,7 @@ export async function deleteTask(formData: FormData) {
 			status: true,
 		},
 	})
-
-	revalidatePath('/')
+	redirect('/')
 }
 
 export async function completedTask(formData: FormData) {
@@ -43,7 +41,7 @@ export async function completedTask(formData: FormData) {
 	const description = formData.get('description') as string
 	const dueDate = formData.get('dueDate') as string
 	const isCompleted = formData.get('isCompleted') === 'on'
-
+	console.log(formData.get('isCompleted'))
 	try {
 		await prisma.task.update({
 			where: { id },
@@ -54,10 +52,9 @@ export async function completedTask(formData: FormData) {
 				status: isCompleted,
 			},
 		})
-
-		redirect('/')
 	} catch (error) {
 		console.error('Error updating task:', error)
 		throw error
 	}
+	redirect('/')
 }

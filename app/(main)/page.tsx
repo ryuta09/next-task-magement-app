@@ -5,7 +5,6 @@ import { getAllTasks } from '@/lib/api'
 
 export default async function MainPage() {
 	const tasks = await getAllTasks()
-	console.log(tasks)
 	return (
 		<div className='h-full overflow-y-auto p-8 pb-24 text-gray-800'>
 			<header className='flex items-center justify-between'>
