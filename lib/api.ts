@@ -35,16 +35,41 @@ export async function getCompletedTasks() {
 }
 
 export async function getTaskById(id: number) {
-  return await prisma.task.findUnique({
-    where: { id },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      dueDate: true,
-      status: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-  });
+	return await prisma.task.findUnique({
+		where: { id },
+		select: {
+			id: true,
+			title: true,
+			description: true,
+			dueDate: true,
+			status: true,
+			createdAt: true,
+			updatedAt: true,
+		},
+	})
+}
+
+export async function getOverdueTasks() {
+	const today = new Date()
+	today.setHours(0, 0, 0, 0)
+	return await prisma.task.findMany({
+		where: {
+			status: false,
+			dueDate: {
+				lt: today,
+			},
+		},
+		select: {
+			id: true,
+			title: true,
+			description: true,
+			dueDate: true,
+			status: true,
+			createdAt: true,
+			updatedAt: true,
+		},
+		orderBy: {
+			dueDate: 'asc', // 期限が古い順に並べると見やすい
+		},
+	})
 }
