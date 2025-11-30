@@ -11,7 +11,7 @@ export default async function TaskEditPage({ params }: Props) {
 	if (!task) return null
 	return (
 		<div className='flex flex-col justify-center py-20'>
-			<h2 className='text-center font-bold text-2xl'>保存</h2>
+			<h2 className='text-center font-bold text-2xl'>編集</h2>
 			<EditTaskForm task={task} />
 		</div>
 	)

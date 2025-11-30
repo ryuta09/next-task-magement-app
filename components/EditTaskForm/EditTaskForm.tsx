@@ -66,7 +66,7 @@ export default function EditTaskForm({ task }: EditTaskFormProps) {
 					type='submit'
 					className='mt-8 w-full rounded-md bg-gray-800 py-2 font-semibold text-sm text-white shadow-sm hover:bg-gray-700'
 				>
-					Edit
+					保存
 				</button>
 			</form>
 		</div>

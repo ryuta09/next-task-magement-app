@@ -10,9 +10,11 @@ export default async function ExpiredTaskPage() {
 				<h1 className='flex items-center font-bold text-2xl'>期限切れタスク</h1>
 			</header>
 			<div className='mt-8 flex flex-wrap gap-4'>
-				{tasks.map((task) => (
-					<TaskCard key={task.id} task={task} />
-				))}
+				{tasks.length === 0 ? (
+					<p>期限切れのタスクは1つもありません。</p>
+				) : (
+					tasks.map((task) => <TaskCard key={task.id} task={task} />)
+				)}
 			</div>
 		</div>
 	)
