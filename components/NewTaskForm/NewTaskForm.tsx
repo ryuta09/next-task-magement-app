@@ -1,7 +1,9 @@
+import { createTask } from '@/lib/action'
+
 export default function NewTaskForm() {
 	return (
 		<div className='mx-auto mt-10 w-full max-w-sm'>
-			<form action=''>
+			<form action={createTask}>
 				<div>
 					<label htmlFor='title' className='block font-medium text-sm'>
 						タイトル
