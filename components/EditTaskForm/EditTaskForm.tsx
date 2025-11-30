@@ -1,7 +1,14 @@
-export default function EditTaskForm() {
+import type { Task } from '@/app/types/task'
+import { completedTask } from '@/lib/action'
+
+interface EditTaskFormProps {
+	task: Task
+}
+export default function EditTaskForm({ task }: EditTaskFormProps) {
 	return (
 		<div className='mx-auto mt-10 w-full max-w-sm'>
-			<form action=''>
+			<form action={completedTask}>
+				<input type='hidden' name='id' value={task.id} />
 				<div>
 					<label htmlFor='title' className='block font-medium text-sm'>
 						タイトル
@@ -10,6 +17,7 @@ export default function EditTaskForm() {
 						type='text'
 						id='title'
 						name='title'
+						defaultValue={task.title}
 						required
 						className='mt-2 block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 ring-gray-300 ring-inset'
 					/>
@@ -22,6 +30,7 @@ export default function EditTaskForm() {
 						type='text'
 						id='description'
 						name='description'
+						defaultValue={task.description}
 						required
 						className='mt-2 block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 ring-gray-300 ring-inset'
 					/>
@@ -34,6 +43,7 @@ export default function EditTaskForm() {
 						type='date'
 						id='dueDate'
 						name='dueDate'
+						defaultValue={task.dueDate.toISOString().split('T')[0]}
 						min='2020-01-01'
 						max='2999-12-31'
 						required
@@ -46,6 +56,7 @@ export default function EditTaskForm() {
 						id='isCompleted'
 						name='isCompleted'
 						className='mr-2 h-4 w-4'
+						defaultChecked={task.status}
 					/>
 					<label htmlFor='isCompleted' className='text-sm'>
 						タスクを完了にする

@@ -21,7 +21,7 @@ export default function TaskCard({ task }: TaskCardProps) {
 				</div>
 				<div className='flex justify-between'>
 					<div
-						className={`mt-1 w-24 rounded-full bg-green-500 px-2 py-1 text-center text-sm text-white shadow-sm`}
+						className={`mt-1 w-24 rounded-full px-2 py-1 text-center text-sm text-white shadow-sm ${task.status ? 'bg-red-500' : 'bg-blue-500'}`}
 					>
 						{task.status ? '完了' : '処理中'}
 					</div>
